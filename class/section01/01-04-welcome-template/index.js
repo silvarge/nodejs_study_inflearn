@@ -1,4 +1,4 @@
-function getWelcomeTemplate({name, age, school, createdAt}) {
+function getWelcomeTemplate({name, age, school, createdAt}) {   // 구조분해할당에 의해 중괄호가 붙음
     const mytemplate =
     `
         <html>
@@ -21,7 +21,7 @@ const age = 12
 const school = "티라노초등학교"
 const createdAt = "2020-10-10"
 
-getWelcomeTemplate({name, age, createdAt})
+getWelcomeTemplate({name, age, createdAt})  // shorthand-proparty에 의해 중괄호가 붙음
 
 // 문제가 많은 코드, 인자가 하나라도 없으면 문제가 발생함.
 // 인자/매개변수 부분에 중괄호를 넣으면 좋은 코드가 된다! (순서 바뀌지 않음)
