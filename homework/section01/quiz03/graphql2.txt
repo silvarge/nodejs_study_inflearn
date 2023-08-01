@@ -1,0 +1,462 @@
+1) createBoard를 활용해, 게시물을 하나 등록해 주세요.
+
+mutation {
+  createBoard(
+    createBoardInput: {
+      writer: "작성자"
+      password: "비밀번호"
+      title: "제목"
+      contents: "내용"
+      images: ["url"]
+    }
+  ){
+    _id
+    writer
+    title
+    contents
+    likeCount
+    dislikeCount
+    images
+    createdAt
+    updatedAt
+  }
+  
+}
+
+--
+
+{
+  "data": {
+    "createBoard": {
+      "_id": "64c8d6bc5d6eaa0029f77de4",
+      "writer": "작성자",
+      "title": "제목",
+      "contents": "내용",
+      "likeCount": 0,
+      "dislikeCount": 0,
+      "images": [
+        "url"
+      ],
+      "createdAt": "2023-08-01T09:56:12.255Z",
+      "updatedAt": "2023-08-01T09:56:12.255Z"
+    }
+  }
+}
+
+2) 등록한 게시글의 제목과 내용은 무엇인가요?
+
+query{
+  fetchBoard(
+    boardId: "64c8d6bc5d6eaa0029f77de4"
+  ){
+    title
+    contents
+  }
+}
+
+--
+
+{
+  "data": {
+    "fetchBoard": {
+      "title": "제목",
+      "contents": "내용"
+    }
+  }
+}
+
+3) 등록한 게시글에 좋아요를 1 올려주세요.
+
+mutation {
+  likeBoard(
+    boardId: "64c8d6bc5d6eaa0029f77de4"
+  )
+}
+
+--
+
+{
+  "data": {
+    "likeBoard": 2
+  }
+}
+
+4) 등록한 게시글에 싫어요도 1 올려주세요.
+
+mutation {
+  dislikeBoard(
+    boardId: "64c8d6bc5d6eaa0029f77de4"
+  )
+}
+
+--
+
+{
+  "data": {
+    "dislikeBoard": 2
+  }
+}
+
+5) 등록한 게시글의 좋아요와 싫어요는 각각 몇 개 인가요? 
+	(fetchBoard를 활용해서 확인해 보세요.)
+
+  query{
+  fetchBoard(
+    boardId: "64c8d6bc5d6eaa0029f77de4"
+  ){
+    likeCount
+    dislikeCount
+  }
+}
+
+---
+
+{
+  "data": {
+    "fetchBoard": {
+      "likeCount": 2,
+      "dislikeCount": 2
+    }
+  }
+}
+
+6) 현재 등록된 게시글의 총 갯수는 몇 개 인가요? 
+	(어떤 API를 활용하면 좋을지 찾아보세요!)
+
+query{
+  fetchBoardsCount
+}
+
+---
+
+{
+  "data": {
+    "fetchBoardsCount": 5028
+  }
+}
+
+7) 등록한 게시글의 제목을 수정해 보세요!
+
+mutation {
+  updateBoard(
+    updateBoardInput: {
+      title: "제목 수정" 
+    }
+    password: "비밀번호"
+    boardId: "64c8d6bc5d6eaa0029f77de4"
+  ){
+    title
+  }
+}
+
+---
+
+{
+  "data": {
+    "updateBoard": {
+      "title": "제목 수정"
+    }
+  }
+}
+
+8) fetchBoards 전체 게시물 조회를 활용하여 방금 쓴 게시물을 검색해 보세요.
+	(search 변수를 활용해요!)
+
+  query{
+  fetchBoards(search: "제목 수정"){
+    _id
+    writer
+    title
+    contents
+    youtubeUrl
+    likeCount
+    dislikeCount
+    createdAt
+  }
+}
+
+---
+
+{
+  "data": {
+    "fetchBoards": [
+      {
+        "_id": "64c8d6bc5d6eaa0029f77de4",
+        "writer": "작성자",
+        "title": "제목 수정",
+        "contents": "내용",
+        "youtubeUrl": null,
+        "likeCount": 2,
+        "dislikeCount": 2,
+        "createdAt": "2023-08-01T09:56:12.255Z"
+      },
+      {
+        "_id": "63be5bf212e1f5002822948f",
+        "writer": "최현규",
+        "title": "제목 수정입니다",
+        "contents": "내용입니다",
+        "youtubeUrl": null,
+        "likeCount": 1,
+        "dislikeCount": 1,
+        "createdAt": "2023-01-11T06:49:22.277Z"
+      },
+      {
+        "_id": "63be558212e1f50028229476",
+        "writer": "병수",
+        "title": "병수 제목 수정",
+        "contents": "3일차 퀴즈풀이중 입니다",
+        "youtubeUrl": null,
+        "likeCount": 2,
+        "dislikeCount": 1,
+        "createdAt": "2023-01-11T06:21:54.440Z"
+      }
+    ]
+  }
+}
+
+9) 등록한 게시글에 댓글을 3개 추가해 보세요.
+
+mutation {
+  createBoardComment(
+    createBoardCommentInput: {
+      writer: "작성자1"
+      password: "비밀번호1"
+      contents: "내용1"
+      rating: 5
+    }
+    boardId: "64c8d6bc5d6eaa0029f77de4"
+  ){
+    _id
+    contents
+  }
+}
+
+mutation {
+  createBoardComment(
+    createBoardCommentInput: {
+      writer: "작성자2"
+      password: "비밀번호2"
+      contents: "내용2"
+      rating: 5
+    }
+    boardId: "64c8d6bc5d6eaa0029f77de4"
+  ){
+    _id
+    contents
+  }
+}
+
+mutation {
+  createBoardComment(
+    createBoardCommentInput: {
+      writer: "작성자3"
+      password: "비밀번호3"
+      contents: "내용3"
+      rating: 5
+    }
+    boardId: "64c8d6bc5d6eaa0029f77de4"
+  ){
+    _id
+    contents
+  }
+}
+
+---
+
+// 앗 1은 복붙 못햇따
+
+{
+  "data": {
+    "createBoardComment": {
+      "_id": "64c8e3fe5d6eaa0029f77de6",
+      "contents": "내용2"
+    }
+  }
+}
+
+{
+  "data": {
+    "createBoardComment": {
+      "_id": "64c8e4175d6eaa0029f77de7",
+      "contents": "내용3"
+    }
+  }
+}
+
+~~
+
+{
+  "data": {
+    "fetchBoardComments": [
+      {
+        "_id": "64c8e4175d6eaa0029f77de7",
+        "contents": "내용3"
+      },
+      {
+        "_id": "64c8e3fe5d6eaa0029f77de6",
+        "contents": "내용2"
+      },
+      {
+        "_id": "64c8e3f05d6eaa0029f77de5",
+        "contents": "내용1"
+      }
+    ]
+  }
+}
+
+10) 첫번째 댓글의 내용을 수정해 보세요!
+
+mutation {
+  updateBoardComment(
+    updateBoardCommentInput:{
+      contents: "수정된 내용1"
+    }
+    password: "비밀번호1"
+    boardCommentId: "64c8e3f05d6eaa0029f77de5"
+  ){
+  	_id
+    writer
+    contents
+    createdAt
+    updatedAt
+  }
+}
+
+--
+
+{
+  "data": {
+    "updateBoardComment": {
+      "_id": "64c8e3f05d6eaa0029f77de5",
+      "writer": "작성자1",
+      "contents": "수정된 내용1",
+      "createdAt": "2023-08-01T10:52:32.580Z",
+      "updatedAt": "2023-08-01T10:52:32.580Z"
+    }
+  }
+}
+
+11) 두번째 댓글을 삭제해 보세요!
+
+mutation {
+  deleteBoardComment(
+    password: "비밀번호2"
+    boardCommentId: "64c8e3fe5d6eaa0029f77de6"
+  )
+}
+
+--
+
+{
+  "data": {
+    "deleteBoardComment": "64c8e3fe5d6eaa0029f77de6"
+  }
+}
+
+12) 등록한 게시글에 달려있는 모든 댓글을 조회해 보세요.(작성자와 내용만 조회합니다.)
+
+query{
+  fetchBoardComments(boardId: "64c8d6bc5d6eaa0029f77de4"){
+    writer
+    contents
+  }
+}
+
+---
+
+{
+  "data": {
+    "fetchBoardComments": [
+      {
+        "writer": "작성자3",
+        "contents": "내용3"
+      },
+      {
+        "writer": "작성자1",
+        "contents": "수정된 내용1"
+      }
+    ]
+  }
+}
+
+13) BEST 게시글을 조회해 보세요! (API 이름을 잘 찾아보세요!)
+
+query{
+  fetchBoardsOfTheBest{
+    _id
+    writer
+    title
+    contents
+    likeCount
+    dislikeCount
+  }
+}
+
+---
+
+{
+  "data": {
+    "fetchBoardsOfTheBest": [
+      {
+        "_id": "64bfae675d6eaa0029f77ad2",
+        "writer": "울산대장",
+        "title": "울산카페 추천해드림",
+        "contents": "<h1><strong style=\"color: rgb(230, 0, 0);\"><em>댓글로 후기 남겨주세요</em></strong></h1>",
+        "likeCount": 151,
+        "dislikeCount": 2
+      },
+      {
+        "_id": "64bfabb15d6eaa0029f77acc",
+        "writer": "쯔양",
+        "title": "오늘 저녁 메뉴 추천해주세요",
+        "contents": "<h1><strong>배고파용 </strong></h1><h1><strong>메뉴추천 댓글 고고</strong></h1>",
+        "likeCount": 115,
+        "dislikeCount": 0
+      },
+      {
+        "_id": "6449b734aef9f000281ba261",
+        "writer": "111",
+        "title": "111",
+        "contents": "111",
+        "likeCount": 104,
+        "dislikeCount": 0
+      },
+      {
+        "_id": "64bfaeec5d6eaa0029f77ad5",
+        "writer": "로니콜먼",
+        "title": "3대몇?",
+        "contents": "<p>3대몇? 댓글 ㄱㄱ</p>",
+        "likeCount": 51,
+        "dislikeCount": 0
+      }
+    ]
+  }
+}
+
+14) 회원가입을 해보세요! 사용자, 즉 User를 만드는 API입니다!
+
+mutation {
+  createUser(
+    createUserInput:{
+      email: "test_aaa@aaa.com"
+      password: "passwd"
+      name: "User1"
+    }
+  ){
+    _id
+    email
+    name
+  }
+}
+
+---
+
+{
+  "data": {
+    "createUser": {
+      "_id": "64c8e6015d6eaa0029f77de8",
+      "email": "test_aaa@aaa.com",
+      "name": "User1"
+    }
+  }
+}

@@ -1,0 +1,206 @@
+1) 철수의 나이는 몇살인가요?(나이만 조회해 주세요.)
+
+query{
+  fetchProfile(name: "철수"){
+    age
+  }
+}
+
+2) 영희의 학교는 어디인가요?(학교만 조회해 주세요.)
+
+query{
+  fetchProfile(name: "영희"){
+    school
+  }
+}
+
+3) 3번 게시글의 내용과 작성일이 무엇인가요?(내용과 작성일만 조회해 주세요.)
+
+query{
+  fetchBoard(number: 3){
+    contents
+    createdAt
+  }
+}
+
+4) 본인의 이름으로 프로필을 작성해 보세요.
+
+mutation{
+  createProfile(
+    name: "전영중"
+    age: 19
+    school: "원중고등학교"
+  ){
+    message
+  }
+}
+
+5) 본인의 이름으로 게시글을 작성해 보세요.
+
+mutation{
+  createBoard(
+    writer: "전영중"
+    title: "제목1"
+    contents: "내용1"
+  ){
+    message
+  }
+}
+
+6) 자신의 프로필을 조회해 보세요.
+
+query{
+  fetchProfile(name:"전영중"){
+    name
+    age
+    school
+  }
+}
+
+7) 자신의 게시글을 조회해 보세요.
+
+query{
+  fetchBoard(number: 15991){
+    writer
+    title
+    contents
+    createdAt
+  }
+}
+
+8) 본인의 프로필에서, 학교를 자신이 졸업한 초등학교로 바꿔보세요.
+
+mutation{
+  updateProfile(
+    name: "전영중"
+  	school: "기내초등학교"
+  ){
+  	message  
+	}
+}
+
+9) 본인의 게시글에서, 제목과 내용을 바꿔보세요.
+
+mutation{
+  updateBoard(
+    number: 15991
+    title: "제목수정1"
+    contents: "내용수정1"
+  ){
+    number
+  	message  
+	}
+}
+
+10) 자신이 좋아하는 만화 주인공으로 프로필을 작성해 보세요.
+
+mutation{
+  createProfile(
+    name: "성준수"
+    age: 19
+    school: "지상고등학교"
+  ){
+    message
+  }
+}
+
+11) 위 10번에서 작성한 프로필을 삭제해 보세요.
+
+mutation{
+  deleteProfile(name: "성준수"){
+    message
+  }
+}
+
+12) 상품을 하나 만들어 보세요.
+
+mutation{
+  createProduct(
+    seller: "영희"
+    createProductInput: {
+      name: "상품1"
+      detail: "디테일"
+      price: 1000
+    }
+  ){
+    _id
+    number
+    message
+  }
+}
+
+// 상품 id: 5ac50b84-7070-47ba-8e84-5154c5946b20
+
+13) 위 12번에서 만들었던 상품의 가격을 500원 인상해 보세요.
+
+mutation{
+  updateProduct(
+    productId: "5ac50b84-7070-47ba-8e84-5154c5946b20"
+    updateProductInput: {price: 1500}
+  ){
+    _id
+    message
+  }
+}
+
+14) 위에서 만든 상품을 조회하되, 가격만 조회해 보세요.
+
+query{
+  fetchProduct(productId: "5ac50b84-7070-47ba-8e84-5154c5946b20"){
+    price
+  }
+}
+
+15) 조회했던 상품을 삭제해 보세요.
+
+mutation{
+  deleteProduct(productId: "5ac50b84-7070-47ba-8e84-5154c5946b20"){
+    message
+  }
+}
+
+16) 삭제한 상품이 정말로 삭제되었는지 다시 한번 조회해 보세요.
+
+query{
+  fetchProduct(productId: "5ac50b84-7070-47ba-8e84-5154c5946b20"){
+    _id
+    seller
+    name
+    price
+  }
+}
+
+17) 게시물 목록 중, 2페이지를 조회해 보세요.
+
+query{
+  fetchBoards(page: 2){
+    number
+    writer
+    title
+    contents
+  }
+}
+
+18) 게시물 목록을 조회할 때, page를 입력하지 않으면, 어떤 결과가 발생하는지 확인해 보세요.
+		(Hint : syntax error는 아닙니다.)
+
+query{
+ fetchBoards{
+   number
+ 	 title
+ }
+}
+
+-> page: 1 이 나온다
+
+19) 프로필이 전체 몇 개가 있는지 확인해 보세요.
+
+query{
+ fetchProfilesCount 
+}
+
+20) 게시물은 몇 개가 있는지 조회해보세요.
+
+query{
+ fetchBoardsCount 
+}
