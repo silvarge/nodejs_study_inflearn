@@ -14,7 +14,7 @@ export function getToken(){
 }
 
 export function sendTokenToSMS(myphone, mytoken){
-    console.log(myphone + "번호로 인증번호 " + mytoken + "를 전송합니다.")
+    console.log(myphone + " 번호로 인증번호 " + mytoken + "를 전송합니다.")
 }
 
 export function createTokenOfPhone(myphone) {
@@ -26,7 +26,3 @@ export function createTokenOfPhone(myphone) {
     
     sendTokenToSMS(myphone, mytoken)
 }
-
-// ---
-
-createTokenOfPhone("01012345678")
