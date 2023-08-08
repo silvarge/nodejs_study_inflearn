@@ -19,6 +19,7 @@ export function getToken(){
 
 export async function sendTokenToSMS(myphone, mytoken){
 
+    // 환경변수 처리
     const SMS_KEY = process.env.SMS_KEY;
     const SMS_SECRET_KEY = process.env.SMS_SECRET_KEY;
     const SMS_SENDER = process.env.SMS_SENDER;
