@@ -23,7 +23,7 @@ export function getWelcomeTemplate({name, age, school, email}){
                 <div>이름: ${name}</div>
                 <div>나이: ${age}</div>
                 <div>학교: ${school}</div>
-                <div>학교: ${email}</div>
+                <div>이메일: ${email}</div>
                 <div>가입일: ${getToday()}</div>
             </body>
         </html>
