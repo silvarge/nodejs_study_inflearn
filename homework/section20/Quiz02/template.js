@@ -1,4 +1,4 @@
-import { checkRRN, setFilteredRRN } from '../quiz01/rrn.js';
+import { checkRRN, setFilteredRRN } from '../Quiz01/rrn.js';
 import { checkEmail } from './email.js';
 import { getWelcomeTemplateMessage } from './message.js';
 // 이메일, 주민번호, 휴대폰 번호, 내가 좋아하는 사이트
