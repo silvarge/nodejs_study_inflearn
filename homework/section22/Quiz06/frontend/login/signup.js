@@ -6,15 +6,15 @@ const getValidationNumber = async () => {
   document.querySelector('#PhoneNumber02').value +
   document.querySelector('#PhoneNumber03').value;
 
-  // fetch('http://localhost:3000/tokens/phone', {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": 'application/json',
-  //   },
-  //   body: JSON.stringify({
-  //     phone: phoneNum
-  //   })
-  // }).then(res => console.log(res));
+  fetch('http://localhost:3000/tokens/phone', {
+    method: "POST",
+    headers: {
+      "Content-Type": 'application/json',
+    },
+    body: JSON.stringify({
+      phone: phoneNum
+    })
+  }).then(res => console.log(res));
 
   document.querySelector('#ValidationInputWrapper').style.display = 'flex'
   console.log('인증 번호 전송')
