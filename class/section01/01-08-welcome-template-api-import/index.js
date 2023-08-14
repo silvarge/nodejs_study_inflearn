@@ -15,7 +15,7 @@ function createUser({name, age, school, email}){
 
 const name = "철수"
 const age = 8
-const school = "다람쥐초등학교"
+const school = "test"
 const email = "a@a.com"
 // const createdAt = "2023-07-31"  // 날짜 부분 (당일로 바꿔보기)
 // const createdAt = getToday()
