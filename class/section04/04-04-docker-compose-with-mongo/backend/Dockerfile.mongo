@@ -1,0 +1,2 @@
+FROM mongo:5
+# 자동으로 mongo DB도 실행시켜줌! 굿 몽고 굿 몽고
