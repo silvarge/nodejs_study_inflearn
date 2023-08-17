@@ -1,0 +1,25 @@
+version: '3.7'
+
+# 컴퓨터들
+services:
+
+  # 컴퓨터이름
+  my-backend: 
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./index.js:/myfolder/index.js"
+      - "./email.js:/myfolder/email.js"
+      - "./package.json:/myfolder/package.json"
+      # - ./src:/myfolder/src
+    ports:
+    # 포트포워딩
+      - 4000:4000
+
+  my-database: 
+  # 도커 파일 없이 한 번에 가능 (한 줄만 있을 때 가능!)
+    image: mongo:5
+    ports:
+      - 27017:27017   # => 이걸 끄면 몽고 DB compass에서 접속 안됨
+                      # => 하지만, 네임리졸루션으로 express에서는 접속 잘 됨
