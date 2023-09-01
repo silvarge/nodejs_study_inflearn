@@ -77,7 +77,7 @@ app.post('/tokens/phone', async function (req, res) {
         await token.save();
     }
     
-    // sendTokenToSMS(phone, mytoken)
+    sendTokenToSMS(phone, mytoken)
 
     res.send("핸드폰으로 인증 문자가 전송되었습니다!")
 })
@@ -135,10 +135,10 @@ app.post('/users', async function(req, res){
     await user.save();
 
     // 2. 가입 환영 템플릿 만들기
-    // const mytemplate = getWelcomeTemplate({name, phone, prefer, email});
+    const mytemplate = getWelcomeTemplate({name, phone, prefer, email});
 
     // 3. 이메일로 보내기
-    // sendTemplateToEmail(email, mytemplate);
+    sendTemplateToEmail(email, mytemplate);
 
     res.send(user._id);
 })
