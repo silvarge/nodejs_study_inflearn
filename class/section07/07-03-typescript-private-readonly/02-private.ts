@@ -28,5 +28,5 @@
 // const monster22 = new FlyMonster2(20);
 // monster22.attack1();
 // monster22.attack2();
-// console.log(monster22.power);
-// // monster22.power = 10;
+// console.log(monster22.power);    // 밖에서 접근 불가
+// // monster22.power = 10;         // 밖에서 수정 불가
