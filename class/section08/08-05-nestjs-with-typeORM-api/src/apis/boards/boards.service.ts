@@ -1,5 +1,6 @@
 import { Injectable, Scope } from '@nestjs/common';
 import { Board } from './entities/board.entity';
+import { IBoardsServiceCreate } from './interfaces/boards-service.interface';
 
 @Injectable({ scope: Scope.DEFAULT }) // injection scope - 싱글톤(new 한 번)으로 할래, 말래?
 // Scope.DEFAULT - 싱글톤 - 앱 전체에서 한 번
@@ -15,13 +16,15 @@ export class BoardsService {
     return result;
   }
 
-  create(writer: string, title: string, contents: string): string {
+  create({ createBoardInput }: IBoardsServiceCreate): string {
     // 1. DB에 접속해서 등록했다 가정
-    console.log(writer);
-    console.log(title);
-    console.log(contents);
+    console.log(createBoardInput.writer);
+    console.log(createBoardInput.title);
+    console.log(createBoardInput.contents);
 
-    // 2. 제대로 다 됐으면 리턴
+    // 2. DB 접속 후 데이터 저장
+
+    // 3. 성공했으면 리턴
     return '게시물 등록에 성공하였습니다.';
   }
 }
