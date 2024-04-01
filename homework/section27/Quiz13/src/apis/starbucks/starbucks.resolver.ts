@@ -1,12 +1,14 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { StarbucksService } from './starbucks.service';
+import { CreateStarbucksInput } from './dtos/create-starbucks.input';
+import { Starbucks } from './entities/starbucks.entity';
 
 @Resolver()
 export class StarbucksResolver {
   constructor(private readonly starbucksService: StarbucksService) {}
 
-  @Query(() => String, { nullable: true })
-  fetchStarbucks(): string {
+  @Query(() => [Starbucks], { nullable: true })
+  fetchStarbucks(): Starbucks[] {
     return this.starbucksService.getFetchCoffee();
   }
 

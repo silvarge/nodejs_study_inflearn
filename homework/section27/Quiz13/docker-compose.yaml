@@ -13,7 +13,7 @@ services:
       # 포트포워딩
       - 3000:3000
     env_file:
-      - ./.env.docker
+      - .env.docker
 
   # 컴퓨터 이름
   my-database:
@@ -23,4 +23,4 @@ services:
       MYSQL_DATABASE: 'myhomework'
       MYSQL_ROOT_PASSWORD: 'root'
     ports:
-      - 3306:3306
+      - 3307:3306

@@ -6,6 +6,8 @@ import { StarbucksModule } from './apis/starbucks/starbucks.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { Starbucks } from './apis/starbucks/entities/starbucks.entity';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
